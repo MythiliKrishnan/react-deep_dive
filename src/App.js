@@ -1,31 +1,18 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Route, Redirect} from 'react-router-dom';
 import './App.css';
-import UserInput from './UserInput/UserInput';
-import UserOutput from './UserOutput/UserOutput';
+import Login from './Components/Login/Login' ;
 class App extends Component {
-  state = {
-    username :'Supermax' 
-  }
-  userNameChangeHandler = (event) => {
-    this.setState (
-      {
-        username : event.target.value
-      }
-    )
-  }
-  render() {
-    return(
+render () {
+   return (
       <div className="App">
-      <h1>React App</h1>
-      <UserInput 
-      changed={this.userNameChangeHandler}
-      initialName={this.state.username}
-      />
-      <UserOutput userName={this.state.username}/>
-      <UserOutput userName={this.state.username}/>
-      <UserOutput userName="Stephanie"/>
+          <BrowserRouter>
+          <Route exact path="/"  render={() => (<Redirect to = "/Login/"/>)} />
+          <Route path="/Login" component={Login}/>
+          </BrowserRouter>
       </div>
-    )
+      
+    );
   }
 }
-export default App;
+export default App;    
